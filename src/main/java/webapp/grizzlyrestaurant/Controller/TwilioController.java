@@ -33,8 +33,8 @@ import webapp.grizzlyrestaurant.Service.UsersReservationService;
 @Controller
 public class TwilioController {
 	
-	public static final String ACCOUNT_SID = "AC141f8b5146b5676bbaff2c81948507bf";
-	public static final String AUTH_TOKEN = "dfa5f34351280247fcfbed8bee59a51c";
+	public static final String ACCOUNT_SID = "";
+	public static final String AUTH_TOKEN = "";
 	
 	@Autowired
 	UserService userService;
