@@ -1,0 +1,47 @@
+.orderTitle {
+    font-size: 50px !important;
+}
+
+.phoneNumberSpan {
+    color: #fff;
+    font-family: Prata;
+}
+
+.btnWapp {
+    width: 300px !important;
+}
+
+.reservationDiv {
+    width: 400px !important;
+    border: 0px !important;
+}
+
+.reservationButton {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.reservationInfo {
+    border: 1px solid #fff;
+}
+
+.reservationTitle {
+    color: #fff;
+    font-weight: bold;
+    font-family: Dancing Script;
+    font-size: 50px;
+}
+
+.reservationText {
+    font-family: Prata;
+    font-size: 12px;
+    color: #fff;
+}
+
+.reservationDiv {
+    margin-top: 10px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border: 1px solid #fff;
+    display: inline-block;
+}

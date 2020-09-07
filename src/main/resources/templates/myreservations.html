@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <base href="/">
+    <link rel="stylesheet" th:href="@{css/modalform.css}">
+    <link rel="stylesheet" th:href="@{css/myorders.css}">
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{css/myreservations.css}">
+    <title>Grizzly Restaurant - Comanda</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light transparent">
+        <a class="navbar-brand" href="#"><img class="brandimg" src="./img/brand.png" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link hover" th:href="@{/home}">Acasă </a>
+            <a class="nav-item nav-link hover" th:href="@{/sandwich}">Comandă</a>
+            <a class="nav-item nav-link hover" th:href="@{/myorders}">Comenzile mele</a>
+            <a class="nav-item nav-link hover active" th:href="@{/myreservations}">Rezervările mele</a>
+            <button class="nav-item nav-link reservation" id="myBtn">Rezervare</button>
+            <form th:action="@{/logout}" method="post">
+              <input class="btn btn-light" id="logout" type="submit" value=""/>
+            </form>
+          </div>
+            
+        </div>
+      </nav>
+
+      <div class="container">
+        <div class="reservationDiv" >
+            <div class="reservationTitle">REZERVAREA TA</div>
+            <div class="showReservation" th:object="${showReservation}">
+                <div class="reservationInfo">
+                  <div class="day">
+                    <span class="reservationText" th:text="'Ziua: ' + ${showReservation.day}"></span>
+                  </div>
+                  <div class="startHour">
+                    <span class="reservationText" th:text="'Ora: ' + ${showReservation.startHour}"></span>
+                  </div>
+                  <div class="people">
+                    <span class="reservationText" th:text="'Oameni: ' + ${showReservation.people}"></span>
+                  </div>
+                </div>
+            </div>
+            <!--<div class="productButtons" th:object="${invitedClient}">
+                <span class="phoneNumberSpan">+40</span>
+                <input type="text" th:field="*{invitedClient}" style="width: 269px;" class="form-control reservationInput" autocomplete="off"/>
+                <a th:href="@{/sendWhatsAppMessage}"><button class="btn btn-light" >Trimite mesaj pe Whatsapp</button></a>
+            </div>-->
+
+
+            <div class="reservationButton">
+              <form action="#" th:action="@{/sendWhatsAppMessage}" th:object="${user}" method="post">
+                <span class="phoneNumberSpan">+40</span>
+                <input type="text" th:field="*{phoneNumber}" style="width: 269px;" class="form-control reservationInput" autocomplete="off"/>
+                <input type="submit" class="btn btn-light btnWapp" value="Trimite mesaj pe Whatsapp"/>
+              </form>
+            </div>
+
+            <div class="invitationMessage">
+              <span class="reservationText" th:text="${invitationMessage}"></span>
+            </div>
+
+        </div>
+      </div>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modalTitleDiv">
+              <span class="modalTitle">Rezervare</span>
+              <div class="modalCloseDiv">
+                <span class="close">&times;</span>
+              </div>
+            </div>
+            
+            
+          </div>
+          <div class="modal-body">
+            <div class="reservationInputDivModal">
+              <form action="#" th:action="@{/savereservation}" th:object="${reservation}" method="post">
+                  <div class="inputDetailsDivModal">
+                      <span class="inputDetailsModal">Oameni:</span>
+                  </div>
+                  <select class="peopleSelect form-control reservationInputModal" id="peopleSelect" th:field="*{people}">
+                    <option th:each="i : ${peopleList}" th:value="${i}" th:text="${i}"></option>
+                  </select>
+          
+                  <div class="inputDetailsDivModal">
+                      <span class="inputDetailsModal">Ora:</span>
+                  </div>
+                  <select class="hourSelect form-control reservationInputModal" id="hourSelect" th:field="*{startHour}">
+                      <option th:each="j : ${hourList}" th:value="${j}" th:text="${j}"></option>
+                  </select>
+
+                  <div class="inputDetailsDivModal">
+                      <span class="inputDetailsModal">Data Rezervării:</span>
+                  </div>
+                  <input type="date" class="form-control reservationInputModal dateInput" th:field="*{day}"/>
+              
+                  <input class="btn btn-dark btnRezerva" type="submit" value="Rezervă"></input>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+      <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");     
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+      </script>
+</body>
+</html>

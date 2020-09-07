@@ -1,0 +1,39 @@
+.foodPic {
+    width: 250px;
+    border: 1px solid #fff;
+}
+
+.foodPic:hover {
+    border: 1px solid #666;
+}
+
+.secondRow {
+    margin-top: 1px;
+}
+
+.gal2 {
+    position: relative;
+    margin-bottom: 173px;
+}
+
+.gal3 {
+    height: 180px;
+    position: relative;
+    margin-bottom: 160px;
+}
+
+.gal4 {
+    height: 190px;
+    position: relative;
+    margin-bottom: 150px;
+}
+
+.gal5 {
+    height: 200px;
+}
+
+.gal6 {
+    height: 190px;
+    position: relative;
+    margin-bottom: 150px;
+}

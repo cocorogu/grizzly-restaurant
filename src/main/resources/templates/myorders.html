@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <base href="/">
+    <link rel="stylesheet" th:href="@{css/modalform.css}">
+    <link rel="stylesheet" th:href="@{css/products.css}">
+    <link rel="stylesheet" th:href="@{css/myorders.css}">
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <title>Grizzly Restaurant - Comanda</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light transparent">
+        <a class="navbar-brand" href="#"><img class="brandimg" src="./img/brand.png" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link hover" th:href="@{/home}">Acasă </a>
+            <a class="nav-item nav-link hover" th:href="@{/sandwich}">Comandă</a>
+            <a class="nav-item nav-link hover active" th:href="@{/myorders}">Comenzile mele</a>
+            <a class="nav-item nav-link hover" th:href="@{/myreservations}">Rezervările mele</a>
+            <button class="nav-item nav-link reservation" id="myBtn">Rezervare</button>
+            <form th:action="@{/logout}" method="post">
+                <input class="btn btn-light" id="logout" type="submit" value=""/>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container">
+        <div class="productDiv" >
+            <div class="orderTitle">COMANDA TA</div>
+            <div class="orderedProducts" th:each="product, iterStat : ${orderedProducts}" >
+                <div class="productInfo">
+                    <span class="productText" th:text="${iterStat.index+1} + '.'"></span>
+                    <span class="productText" th:text="${product.name} + ' - '"></span>
+                    <span class="productText" th:text="${product.price} + ' RON'"></span>
+                </div>
+            </div>
+            <div class="totalPrice">
+                <span class="productText" th:text="'Total: ' + ${total} + ' RON'" style="font-weight:bold; font-size: 25px;"></span>
+            </div>
+            <div class="productButtons">
+                <a th:href="@{/order}"><button class="btn btn-light" >ADAUGA la comanda</button></a>
+            </div>
+            <div class="productButtons">
+                <a th:href="@{'/deleteorder/' + ${order.id}}"><button class="btn btn-light" >STERGE comanda</button></a>
+            </div>
+            <div class="productButtons">
+                <a th:href="@{'/sendorder/' + ${order.id}}"><button class="btn btn-light" >TRIMITE comanda</button></a>
+            </div>
+        </div>
+      </div>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modalTitleDiv">
+              <span class="modalTitle">Rezervare</span>
+              <div class="modalCloseDiv">
+                <span class="close">&times;</span>
+              </div>
+            </div>
+            
+            
+          </div>
+          <div class="modal-body">
+            <div class="reservationInputDivModal">
+              <form action="#" th:action="@{/savereservation}" th:object="${reservation}" method="post">
+                  <div class="inputDetailsDivModal">
+                      <span class="inputDetailsModal">Oameni:</span>
+                  </div>
+                  <select class="peopleSelect form-control reservationInputModal" id="peopleSelect" th:field="*{people}">
+                    <option th:each="i : ${peopleList}" th:value="${i}" th:text="${i}"></option>
+                  </select>
+          
+                  <div class="inputDetailsDivModal">
+                      <span class="inputDetailsModal">Ora:</span>
+                  </div>
+                  <select class="hourSelect form-control reservationInputModal" id="hourSelect" th:field="*{startHour}">
+                      <option th:each="j : ${hourList}" th:value="${j}" th:text="${j}"></option>
+                  </select>
+
+                  <div class="inputDetailsDivModal">
+                      <span class="inputDetailsModal">Data Rezervării:</span>
+                  </div>
+                  <input type="date" class="form-control reservationInputModal dateInput" th:field="*{day}"/>
+              
+                  <input class="btn btn-dark btnRezerva" type="submit" value="Rezervă"></input>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+      <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");     
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+      </script>
+</body>
+</html>

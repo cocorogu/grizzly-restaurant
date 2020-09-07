@@ -1,0 +1,145 @@
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    /*background-color: rgb(0,0,0); /* Fallback color */
+    /*background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    /*-webkit-animation-name: fadeIn; Fade in the background 
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s*/
+  }
+  
+  .modal-content {
+    position: fixed;
+    top: 0;
+    background-color: #fefefe;
+    /*-webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s*/
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 525px;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modal-header {
+    padding: 2px 16px;
+    background-color: #fff;
+    color: white;
+  }
+  
+  .modal-body {
+      padding: 2px 16px;
+      text-align: center;
+    }
+  
+  .modal-footer {
+    padding: 2px 16px;
+    background-color: #fff;
+    color: white;
+    height: 30px;
+  }
+
+  .reservationInputModal {
+    width: 100px;
+    height: 30px;
+    display: inline-block;
+    font-family: Rubik;
+    }
+
+    .reservationInputSendDivModal {
+        margin-top: 20px;
+    }
+
+    .btn {
+        font-family: Prata;
+        width: 150px;
+    }
+
+    /*.btnRezerva {
+      font-family: Prata !important;
+    }*/
+
+    .inputDetailsDivModal {
+        display: inline-block;
+        margin-bottom: 1px;
+        margin-top: 5px;
+        margin-left: 10px;
+        text-align: initial;
+    }
+
+    .inputDetailsModal {
+        color: #000;
+        font-family: Prata;
+        font-size: 15px;
+    }
+
+    .dateInput {
+      width: 190px!important;
+    }
+
+    .modalTitle {
+      color: #000;
+      text-decoration: underline;
+      margin-left: 90px;
+    }
+
+    .close {
+      margin-right: 525px;
+    }
+
+    .modalTitleDiv {
+      margin-left: 412px;
+      text-align: center;
+      font-size: 20px;
+      font-family: Rubik;
+      font-weight: bold;
+    }
+
+    .modalCloseDiv {
+      margin-left: 767px;
+      display: inline;
+    }
+  
+    .hourSelect {
+      width: 150px;
+    }
+
+  @-webkit-keyframes slideIn {
+    from {bottom: 0; opacity: 0} 
+    to {top: 0; opacity: 1}
+  }
+  
+  @keyframes slideIn {
+    from {bottom: 0; opacity: 0}
+    to {top: 0; opacity: 1}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }

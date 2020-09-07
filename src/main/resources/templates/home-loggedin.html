@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    
+    <base href="/">
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{css/modalform.css}">
+    <link rel="stylesheet" th:href="@{css/home.css}">
+    <title>Grizzly Restaurant - Acasă</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light transparent">
+        <a class="navbar-brand" href="#"><img class="brandimg" src="./img/brand.png" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" th:href="@{/home}">Acasă </a>
+            <a class="nav-item nav-link hover" th:href="@{/sandwich}">Comandă</a>
+            <a class="nav-item nav-link hover" th:href="@{/myorders}">Comenzile mele</a>
+            <a class="nav-item nav-link hover" th:href="@{/myreservations}">Rezervările mele</a>
+            <button class="nav-item nav-link reservation" id="myBtn">Rezervare</button>
+            <form th:action="@{/logout}" method="post">
+              <input class="btn btn-light" id="logout" type="submit" value=""/>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container">
+        <div class="smallTitleContainer">
+            <div class="line lineHome"></div>
+        </div>
+        <div class="titleContainer">
+            <span class="title">Bine ai venit,</span>
+        </div>
+        <div class="titleContainer bottomTitle">
+            <span class="title" th:text="${user.lastName}"></span>
+        </div>
+
+        <div class="lineContainer">
+          <div class="line lineHome2"></div>
+        </div>
+
+        <div class="contentDiv">
+            <button id="myBtn2" class="indexButton">Fă o rezervare</button>
+        </div>
+        <div class="contentDiv">
+          <a th:href="@{/sandwich}" class="indexButton">Comandă mâncare</a>
+      </div>
+      </div>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modalTitleDiv">
+              <span class="modalTitle">Rezervare</span>
+              <div class="modalCloseDiv">
+                <span class="close">&times;</span>
+              </div>
+            </div>
+            
+            
+          </div>
+          <div class="modal-body">
+            <div class="reservationInputDivModal">
+              <form action="#" th:action="@{/savereservation}" th:object="${reservation}" method="post">
+                  <div class="inputDetailsDivModal">
+                      <span class="inputDetailsModal">Oameni:</span>
+                  </div>
+                  <select class="peopleSelect form-control reservationInputModal" id="peopleSelect" th:field="*{people}">
+                    <option th:each="i : ${peopleList}" th:value="${i}" th:text="${i}"></option>
+                  </select>
+          
+                  <div class="inputDetailsDivModal">
+                      <span class="inputDetailsModal">Ora:</span>
+                  </div>
+                  <select class="hourSelect form-control reservationInputModal" id="hourSelect" th:field="*{startHour}">
+                      <option th:each="j : ${hourList}" th:value="${j}" th:text="${j}"></option>
+                  </select>
+
+                  <div class="inputDetailsDivModal">
+                      <span class="inputDetailsModal">Data Rezervării:</span>
+                  </div>
+                  <input type="date" class="form-control reservationInputModal dateInput" th:field="*{day}"/>
+              
+                  <input class="btn btn-dark btnRezerva" type="submit" value="Rezervă"></input>
+              </form>
+          </div>
+        </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      
+      </div>
+      <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");     
+        var btn2 = document.getElementById("myBtn2");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+
+        btn2.onclick = function() {
+          modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+      </script>
+</body>
+</html>

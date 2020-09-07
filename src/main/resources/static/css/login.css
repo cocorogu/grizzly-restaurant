@@ -1,0 +1,16 @@
+.logo-img{
+    width: 80%;
+}
+
+.alert {
+    display: inline-block;
+}
+
+.forgot {
+    margin: 5px 0 5px 0;
+}
+
+.phoneNumberSpan {
+    color: #fff;
+    font-family: Rubik;
+}

@@ -1,0 +1,185 @@
+@font-face {
+    font-family: Prata;
+    src: url(../fonts/Prata-Regular.ttf);
+}
+
+@font-face {
+    font-family: Rubik;
+    src: url(../fonts/Rubik-Light.ttf);
+}
+
+@font-face {
+    font-family: Lora;
+    src: url(../fonts/Lora-Regular.ttf);
+}
+
+body {
+    background-image: url("../img/burgerbackground.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    background-position-x: 4050px;
+    background-position-y: 2400px;
+    font-family: Prata;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.navbar-collapse {
+    margin-right: 450px;
+}
+
+.navbar-brand {
+    margin-left: 450px;
+    color: #fff!important;
+}
+
+.nav-item {
+    margin-left: 20px;
+    margin-right: 20px;
+    position: relative;
+}
+
+.navbar {
+    background-color: rgba(0,0,0,0.0)!important;
+    /*border-bottom: 1px solid #fff;*/
+}
+
+.hover {
+    color: #fff!important;
+    position: relative!important;
+    text-decoration: none;
+}
+
+.nav-item:before {
+    content: "";
+    position: absolute!important;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+    margin-bottom: 10px;
+}
+
+.hover:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.active:before {
+    visibility:visible;
+    transform:scaleX(1);
+}
+
+.active {
+    font-weight: bold;
+    color: #fff!important;
+}
+
+.brandimg {
+    width: 100px;
+    height: 50px;
+}
+
+.reservation {
+    border-radius: 30px;
+    background: white;
+    color: #000!important;
+    transition: none;
+}
+
+.title {
+    color: #fff;
+    font-size: 80px;
+}
+
+.smallTitle {
+    font-family: Rubik;
+    color: #fff;
+}
+
+.line {
+    height: 1px;
+    width: 75px;
+    color: #fff;
+    border: 1px solid #fff;
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.reservationLine {
+    width: 325px;
+    position: relative;
+    bottom: 10px;
+}
+
+.topTitle {
+    margin-top: 50px;
+}
+
+.smallTitleContainer {
+    margin-top: 200px;
+}
+
+.bottomTitle {
+    position: relative;
+    bottom: 40px;
+}
+
+.container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.reserveTableButton {
+    font-family: Lora;
+    padding-top: 7px;
+    padding-bottom: 6px;
+    padding-left: 25px;
+    padding-right: 25px;
+    text-decoration: none!important;
+    border-radius: 30px;
+    background: white;
+    color: #000!important;
+    transition: none;
+}
+
+.reservationForm {
+    text-align: center;
+}
+
+.reservationInput {
+    width: 300px;
+    height: 30px;
+    display: inline-block;
+    font-family: Rubik;
+}
+
+.reservationInputSendDiv {
+    margin-top: 20px;
+}
+
+.btn {
+    font-family: Lora;
+    width: 150px;
+}
+
+.inputDetailsDiv {
+    margin-bottom: 1px;
+    margin-top: 5px;
+    margin-left: 410px;
+    text-align: initial;
+}
+
+.inputDetails {
+    color: #fff;
+    font-family: Prata;
+    font-size: 15px;
+}

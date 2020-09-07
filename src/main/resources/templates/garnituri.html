@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <base href="/">
+    <link rel="stylesheet" th:href="@{css/modalform.css}">
+    <link rel="stylesheet" th:href="@{css/products.css}">
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <title>Grizzly Restaurant - Comanda</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light transparent">
+        <a class="navbar-brand" href="#"><img class="brandimg" src="./img/brand.png" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link hover" th:href="@{/home}">Acasă </a>
+            <a class="nav-item nav-link hover active" th:href="@{/sandwich}">Comandă</a>
+            <a class="nav-item nav-link hover" th:href="@{/myorders}">Comenzile mele</a>
+            <a class="nav-item nav-link hover" th:href="@{/myreservations}">Rezervările mele</a>
+            <button class="nav-item nav-link reservation" id="myBtn">Rezervare</button>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container">
+        <div class="categories">
+            <a th:href="@{/sandwich}">
+                <div class="categ" id="categ1">
+                  <img th:src="@{/img/categories/sandwich.png}" class="categImg">
+                  <span class="categText">SANDWICH-URI</span>
+                </div>
+              </a>
+    
+              <a th:href="@{/meniuri}">
+                <div class="categ" id="categ2">
+                  <img th:src="@{/img/categories/fast-food.png}" class="categImg">
+                  <span class="categText">MENIURI</span>
+                </div>
+              </a>
+    
+              <a th:href="@{/garnituri}">
+                <div class="categ" id="categ3">
+                  <img th:src="@{/img/categories/french-fries.png}" class="categImg">
+                  <span class="categText">GARNITURI</span>
+                </div>
+              </a>
+    
+              <a th:href="@{/salate}">
+                <div class="categ" id="categ4">
+                  <img th:src="@{/img/categories/salad.png}" class="categImg">
+                  <span class="categText">SALATE</span>
+                </div>
+              </a>
+    
+              <a th:href="@{/drinks}">
+                <div class="categ" id="categ5">
+                <img th:src="@{/img/categories/soda.png}" class="categImg">
+                <span class="categText">BAUTURI</span>
+              </div>
+              </a>
+        </div>
+        <div class="addedProduct" th:text="${notification}"></div>
+        <div class="productDiv" th:each="product : ${productList}" th:attr="data-product_id=${product.id}">
+              <div class="productInfo">
+                <span class="productText" th:text="${product.name}" ></span>
+              </div>
+              <img class="productImage" th:src="${product.img_src}">
+              <div class="productInfo">
+                <span class="productText" th:text="'Preț: ' + ${product.price} + ' RON'"></span>
+              </div>
+              <div class="productButtons">
+                <a th:href="@{'/saveOrderProduct/garnituri/' + ${product.id}}"><button class="btn btn-light" >+</button></a>
+                <a th:href="@{'/deleteOrderProduct/garnituri/' + ${product.id}}"><button class="btn btn-light">-</button></a>
+              </div>
+        </div>
+      </div>
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modalTitleDiv">
+              <span class="modalTitle">Rezervare</span>
+              <div class="modalCloseDiv">
+                <span class="close">&times;</span>
+              </div>
+            </div>
+            
+            
+          </div>
+          <div class="modal-body">
+            <div class="reservationInputDivModal">
+              <form action="#" th:action="@{/savereservation}" th:object="${reservation}" method="post">
+                  <div class="inputDetailsDivModal">
+                      <span class="inputDetailsModal">Oameni:</span>
+                  </div>
+                  <select class="peopleSelect form-control reservationInputModal" id="peopleSelect" th:field="*{people}">
+                    <option th:each="i : ${peopleList}" th:value="${i}" th:text="${i}"></option>
+                  </select>
+          
+                  <div class="inputDetailsDivModal">
+                      <span class="inputDetailsModal">Ora:</span>
+                  </div>
+                  <select class="hourSelect form-control reservationInputModal" id="hourSelect" th:field="*{startHour}">
+                      <option th:each="j : ${hourList}" th:value="${j}" th:text="${j}"></option>
+                  </select>
+
+                  <div class="inputDetailsDivModal">
+                      <span class="inputDetailsModal">Data Rezervării:</span>
+                  </div>
+                  <input type="date" class="form-control reservationInputModal dateInput" th:field="*{day}"/>
+              
+                  <input class="btn btn-dark btnRezerva" type="submit" value="Rezervă"></input>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+      <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");     
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+      </script>
+</body>
+</html>
